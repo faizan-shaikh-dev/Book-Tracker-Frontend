@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [form, setForm] = useState({
+    name: " ",
+    email: " ",
+    password: " ",
+  });
+
+  
+
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6 sm:p-8">
@@ -43,7 +51,7 @@ const Login = () => {
         </form>
 
         {/*Footer*/}
-        <Link to='/signup'>
+        <Link to="/signup">
           <p className="text-sm text-center text-gray-600 mt-6">
             Don't have an account?{" "}
             <span className="text-blue-600 hover:underline cursor-pointer">

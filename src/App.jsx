@@ -2,7 +2,6 @@ import React from "react";
 import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
-import Topbar from "./components/Topbar";
 import Dashboard from "./pages/Dashboard";
 
 const App = () => {
