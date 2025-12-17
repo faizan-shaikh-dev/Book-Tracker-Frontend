@@ -1,6 +1,17 @@
 import React from "react";
 import { FiUser } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 export default function Sidebar({ isOpen }) {
+  const { logoutUser } = useAuth();
+  const naviagte = useNavigate();
+
+  const handelLogout = () => {
+    logoutUser();
+    naviagte("/login");
+    toast.success("Logout success");
+  };
   return (
     <aside
       className={`fixed md:static inset-y-0 left-0 z-40 w-64 bg-white border-r
@@ -20,10 +31,16 @@ export default function Sidebar({ isOpen }) {
         </nav>
 
         <div className="px-4 py-4 border-t flex  hover:text-black">
-          <button className="w-full text-left px-4 py-2 text-white bg-red-500 hover:bg-red-400 font-bold rounded-xl">
+          <button
+            onClick={handelLogout}
+            className="w-full text-left px-4 py-2 text-white bg-red-500 hover:bg-red-400 font-bold rounded-xl"
+          >
             Logout
           </button>
-          <FiUser size={18} className="text-white absolute bottom-6.5 left-24"/>
+          <FiUser
+            size={18}
+            className="text-white absolute bottom-6.5 left-24"
+          />
         </div>
       </div>
     </aside>

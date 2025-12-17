@@ -1,6 +1,10 @@
 import React from "react";
 import { FiMoon } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext";
 export default function Topbar({ onMenuClick }) {
+
+  const {user} = useAuth();
+
   return (
     <header className="h-14 bg-white border-b flex items-center justify-between px-4">
       <button
@@ -10,7 +14,7 @@ export default function Topbar({ onMenuClick }) {
         ☰
       </button>
 
-      <h1 className="font-semibold text-lg">Book Tracker</h1>
+      <h1 className="font-semibold text-lg">{user ? `👋 Welcome ${user.name}`: "User name"}</h1>
 
        <button
         className="p-2 rounded hover:bg-gray-100"

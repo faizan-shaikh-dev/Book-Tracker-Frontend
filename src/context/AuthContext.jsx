@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { loginUser, registerUser } from "../utils/authServices";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext(null);
 
@@ -17,6 +18,7 @@ export const AuthContextProvider = ({ children }) => {
       setError(null);
 
       const res = await registerUser(payload);
+      toast.success("Register User Succsessfull");
       return res;
     } catch (err) {
       setError(err?.response?.data?.message || "Register failed");
@@ -38,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
-
+      toast.success("Login Successfull");
       return res;
     } catch (err) {
       setError(err?.response?.data?.message || "Login failed");
@@ -53,6 +55,7 @@ export const AuthContextProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
+   
   };
 
   return (
